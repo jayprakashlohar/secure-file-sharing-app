@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const path = require("path");
 const connectDatabase = require("./config/database");
 
 dotenv.config();
@@ -19,6 +20,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files from the app
+app.use(express.static(path.join(__dirname, "../../client/dist")));
+
 // Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/files", require("./routes/files"));
@@ -29,6 +33,14 @@ app.get("/api/check", (req, res) => {
     status: "OK",
     message: "Server is running and connected to database",
   });
+});
+
+// Serve uploads folder
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+
+// match one above, send back React's index.html file.
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../client/dist", "index.html"));
 });
 
 // Error handling for multer
