@@ -8,22 +8,22 @@ import {
 import { useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-// import Dashboard from "./pages/Dashboard";
-// import SharedFile from "./pages/SharedFile";
+import Dashboard from "./pages/Dashboard";
+import SharedFile from "./pages/SharedFile";
 
 function App() {
   const { isAuthenticated, loading } = useAuth();
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary"></div>
-          <p className="mt-4 text-gray-600 font-medium">Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+  //       <div className="flex flex-col items-center">
+  //         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary"></div>
+  //         <p className="mt-4 text-gray-600 font-medium">Loading...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <Router>
@@ -38,12 +38,12 @@ function App() {
             isAuthenticated ? <Navigate to="/dashboard" /> : <Register />
           }
         />
-        {/* <Route
+        <Route
           path="/dashboard"
           element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route path="/shared/:linkId" element={<SharedFile />} />
-        <Route path="/" element={<Navigate to="/dashboard" />} /> */}
+        <Route path="/" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>
   );
