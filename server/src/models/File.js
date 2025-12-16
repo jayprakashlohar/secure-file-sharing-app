@@ -48,7 +48,6 @@ const fileSchema = new mongoose.Schema(
         linkId: {
           type: String,
           required: true,
-          unique: true,
         },
         createdAt: {
           type: Date,
@@ -75,6 +74,6 @@ const fileSchema = new mongoose.Schema(
 // Index for queries
 fileSchema.index({ owner: 1, uploadedAt: -1 });
 fileSchema.index({ "sharedWith.user": 1 });
-fileSchema.index({ "shareLinks.linkId": 1 });
+fileSchema.index({ "shareLinks.linkId": 1 }, { sparse: true });
 
 module.exports = mongoose.model("File", fileSchema);
