@@ -8,8 +8,8 @@ import {
 import { useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import SharedFile from "./pages/SharedFile";
+// import Dashboard from "./pages/Dashboard";
+// import SharedFile from "./pages/SharedFile";
 
 function App() {
   const { isAuthenticated, loading } = useAuth();
